@@ -1,6 +1,6 @@
 import { useFonts } from 'expo-font';
 
-import { SafeAreaView, StyleSheet, Text, View, Platform, StatusBar } from 'react-native';
+import Main from './src/Main';
 
 export default function App() {
   const [isFontsLoaded] = useFonts({
@@ -14,17 +14,6 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={{ fontFamily: 'GeneralSans-400' }}>GeneralSans-400</Text>
-      <Text style={{ fontFamily: 'GeneralSans-600' }}>GeneralSans-600</Text>
-      <Text style={{ fontFamily: 'GeneralSans-700' }}>GeneralSans-700</Text>
-    </SafeAreaView>
+    <Main />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-  },
-});
