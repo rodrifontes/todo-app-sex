@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Header from '../components/Header';
 import Tasks from '../components/Tasks';
 
@@ -5,8 +7,13 @@ import { Container } from './styles';
 
 import { tasks } from '../mocks/tasks';
 import AddTaskButton from '../components/AddTaskButton';
+import DeleteConfirmModal from '../components/DeleteConfirmModal';
+import NewTaskModal from '../components/NewTaskModal';
 
 export default function Main() {
+  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
+  const [isNewTaskModalVisible, setisNewTaskModalVisible] = useState(false);
+
   function handleEditTask(task) {
     alert('Alterar Tarefa');
   }
@@ -16,7 +23,12 @@ export default function Main() {
   }
 
   function handleConfirmDeleteTask(task) {
-    alert('Confirmar exclusão de Tarefa');
+    setIsDeleteModalVisible(true);
+  }
+
+  function handleDeleteTask() {
+    //Código p excluir a tarefa
+    setIsDeleteModalVisible(false);
   }
 
   return (
@@ -30,7 +42,18 @@ export default function Main() {
         onConfirmDeleteTask={handleConfirmDeleteTask}
       />
 
-      <AddTaskButton onPress={() => alert('Add Tarefa')} />
+      <AddTaskButton onPress={() => setisNewTaskModalVisible(true)} />
+
+      <DeleteConfirmModal
+        visible={isDeleteModalVisible}
+        onClose={() => setIsDeleteModalVisible(false)}
+        onConfirm={handleDeleteTask}
+      />
+
+      <NewTaskModal
+        visible={isNewTaskModalVisible}
+        onClose={() => setisNewTaskModalVisible(false)}
+      />
     </Container>
   );
 }
