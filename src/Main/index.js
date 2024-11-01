@@ -12,7 +12,7 @@ import NewTaskModal from '../components/NewTaskModal';
 
 export default function Main() {
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
-  const [isNewTaskModalVisible, setisNewTaskModalVisible] = useState(false);
+  const [isNewTaskModalVisible, setIsNewTaskModalVisible] = useState(false);
 
   function handleEditTask(task) {
     alert('Alterar Tarefa');
@@ -31,6 +31,11 @@ export default function Main() {
     setIsDeleteModalVisible(false);
   }
 
+  function handleCreateTask(task) {
+    //Código p cadastrar a tarefa
+    setIsNewTaskModalVisible(false);
+  }
+
   return (
     <Container>
       <Header />
@@ -42,7 +47,7 @@ export default function Main() {
         onConfirmDeleteTask={handleConfirmDeleteTask}
       />
 
-      <AddTaskButton onPress={() => setisNewTaskModalVisible(true)} />
+      <AddTaskButton onPress={() => setIsNewTaskModalVisible(true)} />
 
       <DeleteConfirmModal
         visible={isDeleteModalVisible}
@@ -52,7 +57,8 @@ export default function Main() {
 
       <NewTaskModal
         visible={isNewTaskModalVisible}
-        onClose={() => setisNewTaskModalVisible(false)}
+        onClose={() => setIsNewTaskModalVisible(false)}
+        onSave={handleCreateTask}
       />
     </Container>
   );

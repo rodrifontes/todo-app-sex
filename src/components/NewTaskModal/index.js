@@ -7,8 +7,9 @@ import CustomModal from '../CustomModal';
 import { Header } from './styles';
 
 import close from '../../assets/images/close.png';
+import TaskForm from '../TaskForm';
 
-export default function NewTaskModal({ visible, onClose }) {
+export default function NewTaskModal({ visible, onClose, onSave }) {
   return (
     <CustomModal visible={visible}>
       <Header>
@@ -18,6 +19,10 @@ export default function NewTaskModal({ visible, onClose }) {
           <Image source={close} />
         </TouchableOpacity>
       </Header>
+
+      <TaskForm
+        onSave={onSave}
+      />
     </CustomModal>
   );
 }
